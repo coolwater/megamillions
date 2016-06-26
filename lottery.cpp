@@ -1,6 +1,9 @@
 /**
- * Author: Sheetal Gangakhedkar
+ * Author: Cool Water
  * Date: June 25, 2016
+ * Description: Mega Millions Lottery - Ticket Generator
+ * Usage: ./lottery <n> - 'n' for number of tickets (default: 10)
+ * Purpose: Brushing up C++ programming after 12 years of respite!
  */
 #include <iostream>
 #include <iomanip>
