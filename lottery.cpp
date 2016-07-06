@@ -3,7 +3,7 @@
  * Date: June 25, 2016
  * Description: Mega Millions Lottery - Ticket Generator
  * Usage: ./lottery <n> - 'n' for number of tickets (default: 10)
- * Purpose: Brushing up C++ programming after 12 years of respite!
+ * Purpose: just for fun!
  */
 #include <iostream>
 #include <iomanip>
@@ -31,13 +31,21 @@ public:
     } 
 
     int draw() {
-        int randIdx = rand() % (MEGABASKET_SIZE - numDrawn);
-        for (int i=randIdx; i<MEGABASKET_SIZE; i++) {
-            if (megaballs[i] != -1) {
+        int basketSize = MEGABASKET_SIZE - numDrawn;
+        int randIdx = rand() % basketSize;
+        for (int i=0; i<MEGABASKET_SIZE; i++) {
+            // skip over balls no longer in the basket
+            if (megaballs[i] == -1)
+               continue;
+            // choose the 'randIdx'th ball from the remaining basket
+            if (megaballs[i] != -1 && randIdx == 0) {
                numDrawn++;
                int drawnBall = megaballs[i];
                megaballs[i] = -1;
                return drawnBall;
+            } else {
+                // skip over ball not chosen by rand() 'randIdx'
+                randIdx--;
             }
         }
     }
@@ -57,13 +65,21 @@ public:
     } 
 
     int draw() {
-        int randIdx = rand() % (BALLBASKET_SIZE - numDrawn);
-        for (int i=randIdx; i<BALLBASKET_SIZE; i++) {
-            if (balls[i] != -1) {
+        int basketSize = BALLBASKET_SIZE - numDrawn;
+        int randIdx = rand() % basketSize;
+        for (int i=0; i<BALLBASKET_SIZE; i++) {
+            // skip over balls no longer in the basket
+            if (balls[i] == -1)
+               continue;
+            // choose the 'randIdx'th ball from the remaining basket
+            if (balls[i] != -1 && randIdx == 0) {
                numDrawn++;
                int drawnBall = balls[i];
                balls[i] = -1;
                return drawnBall;
+            } else {
+                // skip over ball not chosen by rand() 'randIdx'
+                randIdx--;
             }
         }
     }
